@@ -11,6 +11,10 @@ from collections import Counter
 import json
 import nltk
 from nltk.corpus import stopwords
+from string import punctuation
+
+CUSTOM_STOPWORDS = stopwords.words("english")
+CUSTOM_STOPWORDS.extend(list(punctuation))
 
 class KnowledgeGraphBuilder(CoupleExtractor):
 	
@@ -34,7 +38,7 @@ class KnowledgeGraphBuilder(CoupleExtractor):
 		if remove_pronouns: # Ignore pronouns
 			couple_iter = filter(lambda c: c['concept_core'][-1]['lemma'] not in ['-pron-',''], couple_iter)
 		if remove_stopwords: # Ignore stowords
-			couple_iter = filter(lambda c: not c['concept_core'][-1]['lemma'] in stopwords.words('english'), couple_iter)
+			couple_iter = filter(lambda c: not c['concept_core'][-1]['lemma'] in CUSTOM_STOPWORDS, couple_iter)
 		if remove_numbers: # Ignore concepts containing digits
 			couple_iter = filter(lambda c: re.search(r'\d', c['concept']['text']) is None, couple_iter)
 		if not remove_pronouns: # Remove empty strings
