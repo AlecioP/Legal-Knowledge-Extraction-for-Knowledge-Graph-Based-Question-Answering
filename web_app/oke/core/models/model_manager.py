@@ -196,7 +196,7 @@ class ModelManager():
 		if not disable:
 			disable = self.disable_spacy_component
 		if not n_threads: # real multi-processing: https://git.readerbench.com/eit/prepdoc/blob/f8e93b6d0a346e9a53dac2e70e5f1712d40d6e1e/examples/parallel_parse.py
-			n_threads = multiprocessing.cpu_count()
+			n_threads = 1#multiprocessing.cpu_count()
 		if not batch_size:
 			batch_size = self.__batch_size
 		def fetch_fn(missing_text):
