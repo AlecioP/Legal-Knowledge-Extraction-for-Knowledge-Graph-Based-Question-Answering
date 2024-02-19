@@ -231,7 +231,7 @@ class ConceptExtractor(ModelManager):
 		return tuple(concept_span)
 
 	@staticmethod
-	def get_concept_dict_from_span(span, prevent_verb_lemmatization=False, hidden_dep_list=[]):
+	def get_concept_dict_from_span(span, prevent_verb_lemmatization=True, hidden_dep_list=[]):
 		# print(list(map(lambda x: (x.text, x.pos_, x.dep_), span)))
 		return {
 			'span': tuple(span),
